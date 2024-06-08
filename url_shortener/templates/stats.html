@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2 style="text-align: center;">Url Shortener Statistics</h2>
+    <hr>
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Short Url</th>
+            <th scope="col">Original Url</th>
+            <th scope="col">Visits</th>
+            <th scope="col">Creation Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for url in urls %}
+                <td scope="row">{{url.id}}</td>
+                <td scope="row"> {{url.shorten_url}}</td>
+                <td scope="row">{{url.original_url}}</td>
+                <td scope="row">{{url.visits}}</td>
+                <td scope="row">{{url.created_at}}</td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+{% endblock content %}

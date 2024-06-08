@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 style="text-align: center;"> Python Django Url Shortener</h2>
+<hr>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+        <p>
+            {{ new_url_form.as_p }}
+        </p>
+    <br>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+{% if new_url_link %}
+<hr>
+<div class="text-align: center;">
+    <div>
+        <label><strong>Original URL:</strong></label>
+        <code>{{new_url_form.instance.original_url}}</code>
+    </div>
+    <div>
+        <label><strong>Shortened URL: </strong></label>
+        <a href="{{new_url_link}}"><code>{{new_url_link}}</code></a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock content %}
